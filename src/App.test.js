@@ -17,13 +17,11 @@ const server = setupServer(
   })
 );
 
-beforeAll(async () => server.listen());
+beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 it("should have no visual regressions while rendering the greeting", async () => {
-  await server.listen();
-
   const { getByTestId } = render(<App />);
   await waitFor(() => getByTestId("greeting"));
 
